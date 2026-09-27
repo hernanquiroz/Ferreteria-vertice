@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ferretería Vértice - Construye tus ideas</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-main: #F8F9FA;
+            --primary: #1A365D;
+            --accent: #DD6B20;
+            --accent-hover: #C05621;
+            --text: #2D3748;
+            --text-light: #718096;
+            --white: #FFFFFF;
+            --border: #E2E8F0;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            --shadow-hover: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* HEADER */
+        header {
+            background: var(--white);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 800;
+            font-size: 1.3rem;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--primary);
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+            position: relative;
+        }
+
+        .logo-icon::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            transform: translate(-50%, -30%);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .btn {
+            padding: 10px 22px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        /* HERO */
+        .hero {
+            background: linear-gradient(135deg, rgba(26, 54, 93, 0.92), rgba(26, 54, 93, 0.85)), 
+                        url('https://images.unsplash.com/photo-1504148455328-c376907d081c?w=1600') center/cover;
+            color: var(--white);
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.2rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 650px;
+            margin: 0 auto 35px;
+            opacity: 0.95;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .hero .btn-secondary {
+            color: var(--white);
+            border-color: var(--white);
+        }
+
+        .hero .btn-secondary:hover {
+            background: var(--white);
+            color: var(--primary);
+        }
+
+        /* BENEFITS BAR */
+        .benefits {
+            background: var(--white);
+            padding: 25px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            text-align: center;
+        }
+
+        .benefit-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .benefit-icon {
+            font-size: 1.8rem;
+        }
+
+        .benefit-text {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--text);
+        }
+
+        /* PRODUCTS SECTION */
+        .products {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2.3rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            color: var(--text-light);
+            font-size: 1.05rem;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 25px;
+        }
+
+        .product-card {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .product-image {
+            height: 200px;
+            background: var(--bg-main);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: var(--accent);
+            color: var(--white);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+
+        .product-info {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-name {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        .product-desc {
+            font-size: 0.88rem;
+            color: var(--text-light);
+            margin-bottom: 15px;
+            flex-grow: 1;
+        }
+
+        .product-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+        }
+
+        .product-price {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .price-old {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            text-decoration: line-through;
+        }
+
+        .price-current {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--accent);
+        }
+
+        .btn-add {
+            background: var(--primary);
+            color: var(--white);
+            padding: 8px 14px;
+            border-radius: 8px;
+            border: none;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn-add:hover {
+            background: var(--accent);
+        }
+
+        /* TESTIMONIALS */
+        .testimonials {
+            background: var(--white);
+            padding: 80px 0;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .testimonial {
+            background: var(--bg-main);
+            padding: 30px;
+            border-radius: 12px;
+            border-left: 4px solid var(--accent);
+        }
+
+        .stars {
+            color: var(--accent);
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            color: var(--text);
+            margin-bottom: 15px;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 0.9rem;
+        }
+
+        /* NEWSLETTER */
+        .newsletter {
+            background: var(--primary);
+            color: var(--white);
+            padding: 70px 0;
+            text-align: center;
+        }
+
+        .newsletter h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .newsletter p {
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .newsletter-form {
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            min-width: 250px;
+            padding: 14px 20px;
+            border-radius: 8px;
+            border: none;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #0F2340;
+            color: var(--white);
+            padding: 60px 0 25px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h3 {
+            font-size: 1.05rem;
+            margin-bottom: 18px;
+            color: var(--white);
+        }
+
+        .footer-col p, .footer-col a {
+            color: #A0AEC0;
+            text-decoration: none;
+            font-size: 0.9rem;
+            line-height: 1.9;
+            display: block;
+        }
+
+        .footer-col a:hover {
+            color: var(--accent);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 25px;
+            text-align: center;
+            color: #A0AEC0;
+            font-size: 0.85rem;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .social-icons a {
+            width: 36px;
+            height: 36px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+        }
+
+        .social-icons a:hover {
+            background: var(--accent);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+            .benefits-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 25px;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="container">
+            <nav class="nav">
+                <a href="#" class="logo">
+                    <div class="logo-icon"></div>
+                    Ferretería Vértice
+                </a>
+                <ul class="nav-links">
+                    <li><a href="#">Inicio</a></li>
+                    <li><a href="#">Catálogo</a></li>
+                    <li><a href="#">Ofertas</a></li>
+                    <li><a href="#">Asesoría</a></li>
+                    <li><a href="#">Contacto</a></li>
+                </ul>
+                <a href="#" class="btn btn-primary">Ver Ofertas</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="container">
+            <h1>Construye tus ideas.<br>Nosotros ponemos las herramientas.</h1>
+            <p>Equipamiento profesional, asesoría experta y envíos rápidos para que tu proyecto no se detenga. Calidad que se nota en cada detalle.</p>
+            <div class="hero-buttons">
+                <a href="#productos" class="btn btn-primary">Explorar Catálogo</a>
+                <a href="#" class="btn btn-secondary">Hablar con un Experto</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- BENEFITS -->
+    <section class="benefits">
+        <div class="container">
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <div class="benefit-icon">🚚</div>
+                    <div class="benefit-text">Envío en 24/48h</div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">🛡️</div>
+                    <div class="benefit-text">Garantía de 2 años</div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">🛠️</div>
+                    <div class="benefit-text">Soporte Técnico Gratis</div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">💳</div>
+                    <div class="benefit-text">Pago en 3 cuotas</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRODUCTS -->
+    <section class="products" id="productos">
+        <div class="container">
+            <div class="section-title">
+                <h2>Productos Destacados</h2>
+                <p>Lo más vendido por nuestros profesionales esta semana</p>
+            </div>
+            <div class="products-grid">
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <span class="product-badge">-23%</span>
+                        🔨
+                    </div>
+                    <div class="product-info">
+                        <div class="product-name">Taladro Percutor 20V "Vértice Pro"</div>
+                        <div class="product-desc">Máxima potencia sin cables. Incluye 2 baterías de litio y maletín.</div>
+                        <div class="product-footer">
+                            <div class="product-price">
+                                <span class="price-old">129,99€</span>
+                                <span class="price-current">99,99€</span>
+                            </div>
+                            <button class="btn-add">Añadir</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">🪛</div>
+                    <div class="product-info">
+                        <div class="product-name">Set Destornilladores 32 piezas</div>
+                        <div class="product-desc">Acero cromado-vanadio. Punta magnética para tornillos imposibles.</div>
+                        <div class="product-footer">
+                            <div class="product-price">
+                                <span class="price-current">24,50€</span>
+                            </div>
+                            <button class="btn-add">Añadir</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">⚙️</div>
+                    <div class="product-info">
+                        <div class="product-name">Sierra Circular 1500W con Láser</div>
+                        <div class="product-desc">Cortes milimétricos en madera y aluminio. Sistema anti-polvo.</div>
+                        <div class="product-footer">
+                            <div class="product-price">
+                                <span class="price-current">145,00€</span>
+                            </div>
+                            <button class="btn-add">Añadir</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">📐</div>
+                    <div class="product-info">
+                        <div class="product-name">Nivel Láser Autonivelante 360°</div>
+                        <div class="product-desc">Líneas verdes de alta visibilidad. Ideal para interiores y exteriores.</div>
+                        <div class="product-footer">
+                            <div class="product-price">
+                                <span class="price-current">89,90€</span>
+                            </div>
+                            <button class="btn-add">Añadir</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">💨</div>
+                    <div class="product-info">
+                        <div class="product-name">Compresor de Aire Portátil 25L</div>
+                        <div class="product-desc">Silencioso y compacto. Perfecto para herramientas neumáticas.</div>
+                        <div class="product-footer">
+                            <div class="product-price">
+                                <span class="price-current">115,00€</span>
+                            </div>
+                            <button class="btn-add">Añadir</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">🔧</div>
+                    <div class="product-info">
+                        <div class="product-name">Kit Llaves Allen y Torx</div>
+                        <div class="product-desc">18 piezas con revestimiento antideslizante y cabezas esféricas.</div>
+                        <div class="product-footer">
+                            <div class="product-price">
+                                <span class="price-current">19,99€</span>
+                            </div>
+                            <button class="btn-add">Añadir</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">⚡</div>
+                    <div class="product-info">
+                        <div class="product-name">Soldadora Inverter 160A "EasyWeld"</div>
+                        <div class="product-desc">Ligera (4kg), con arco estable y protección contra sobrecalentamiento.</div>
+                        <div class="product-footer">
+                            <div class="product-price">
+                                <span class="price-current">135,00€</span>
+                            </div>
+                            <button class="btn-add">Añadir</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">🪵</div>
+                    <div class="product-info">
+                        <div class="product-name">Lijadora Orbital 200W</div>
+                        <div class="product-desc">Acabados finos sin esfuerzo. Compatible con aspiración externa.</div>
+                        <div class="product-footer">
+                            <div class="product-price">
+                                <span class="price-current">65,00€</span>
+                            </div>
+                            <button class="btn-add">Añadir</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <span class="product-badge">TOP</span>
+                        🧰
+                    </div>
+                    <div class="product-info">
+                        <div class="product-name">Set Brocas Mixtas 40 piezas</div>
+                        <div class="product-desc">Hormigón, madera y metal. Puntas de widia y titanio.</div>
+                        <div class="product-footer">
+                            <div class="product-price">
+                                <span class="price-current">34,90€</span>
+                            </div>
+                            <button class="btn-add">Añadir</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">🪜</div>
+                    <div class="product-info">
+                        <div class="product-name">Escalera Telescópica 3.8m</div>
+                        <div class="product-desc">Se pliega a 85cm. Certificación EN131. Cierre de seguridad.</div>
+                        <div class="product-footer">
+                            <div class="product-price">
+                                <span class="price-current">109,00€</span>
+                            </div>
+                            <button class="btn-add">Añadir</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>Profesionales que confían en Vértice</h2>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial">
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">"El taladro 20V es una bestia. La batería me dura toda la jornada en obra. 100% recomendada."</p>
+                    <div class="testimonial-author">— Carlos M., Carpintero</div>
+                </div>
+                <div class="testimonial">
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">"Llevaba meses buscando un nivel láser que no me dejara ciego con el rojo. El de líneas verdes de Vértice es perfecto."</p>
+                    <div class="testimonial-author">— Elena R., Interiorista</div>
+                </div>
+                <div class="testimonial">
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">"Atención al cliente impecable. Me asesoraron sobre la soldadora exacta que necesitaba. Volveré a comprar."</p>
+                    <div class="testimonial-author">— Javier L., Fontanero</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEWSLETTER -->
+    <section class="newsletter">
+        <div class="container">
+            <h2>¿Tienes un proyecto en mente?</h2>
+            <p>Suscríbete y recibe un <strong>10% de descuento</strong> en tu primera compra + guías de bricolaje exclusivas.</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Tu correo electrónico" required>
+                <button type="submit" class="btn btn-primary">Suscribirme</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Ferretería Vértice</h3>
+                    <p>Herramientas para quienes construyen el mundo. Calidad, asesoramiento y pasión por el oficio desde 1998.</p>
+                    <div class="social-icons">
+                        <a href="#">📷</a>
+                        <a href="#">▶️</a>
+                        <a href="#">🎵</a>
+                        <a href="#">📘</a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Enlaces</h3>
+                    <a href="#">Política de envíos</a>
+                    <a href="#">Devoluciones</a>
+                    <a href="#">Términos y condiciones</a>
+                    <a href="#">Aviso legal</a>
+                </div>
+                <div class="footer-col">
+                    <h3>Contacto</h3>
+                    <p>📍 Av. de la Industria 45</p>
+                    <p>📞 900 123 456</p>
+                    <p>✉️ hola@ferreteriavertice.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                © 2024 Ferretería Vértice. Todos los derechos reservados.
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
